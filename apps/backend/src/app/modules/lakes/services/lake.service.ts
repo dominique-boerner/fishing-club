@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
 import { Lake, LakeDocument } from '../schemas/lake.schema';
 import { Model } from 'mongoose';
@@ -9,5 +9,9 @@ export class LakeService {
 
   async getAllLakes() {
     return this.lakeModel.find({});
+  }
+
+  async countLakes() {
+    return this.lakeModel.countDocuments()
   }
 }

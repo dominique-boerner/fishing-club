@@ -1,5 +1,5 @@
-import { Controller, Get, Logger } from "@nestjs/common";
-import { LakeService } from "../services/lake.service";
+import { Controller, Get, Logger } from '@nestjs/common';
+import { LakeService } from '../services/lake.service';
 
 /**
  * LakeController
@@ -8,11 +8,17 @@ import { LakeService } from "../services/lake.service";
  */
 @Controller('lake')
 export class LakeController {
-  constructor(private readonly lakeService: LakeService) {}
+  constructor(private readonly lakeService: LakeService) {
+
+  }
 
   @Get('')
   getAllLakes() {
-    Logger.log('Get all lakes', LakeController.name);
     return this.lakeService.getAllLakes();
+  }
+
+  @Get('/count')
+  countAllLakes() {
+    return this.lakeService.countLakes();
   }
 }
