@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, Post, Query } from "@nestjs/common";
-import { LakeService } from "../services/lake.service";
-import { Lake, LakeDocument } from "../schemas/lake.schema";
-import { ApiBody, ApiQuery } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
+import { LakeService } from '../services/lake.service';
+import { Lake, LakeDocument } from '../schemas/lake.schema';
+import { ApiBody, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 /**
  * LakeController
@@ -10,6 +10,7 @@ import { ApiBody, ApiQuery } from "@nestjs/swagger";
  *                of lakes.
  * @see LakeService
  */
+@ApiTags('lake')
 @Controller('lake')
 export class LakeController {
   constructor(private readonly lakeService: LakeService) {}
@@ -20,6 +21,9 @@ export class LakeController {
    */
   @Post('')
   @ApiBody({ type: Lake })
+  @ApiOperation({
+    summary: 'Create a new lake and save it into the database.',
+  })
   create(@Body() lake: LakeDocument) {
     return this.lakeService.create(lake);
   }
@@ -28,6 +32,9 @@ export class LakeController {
    * @description - Get every lake from the database.
    */
   @Get('')
+  @ApiOperation({
+    summary: 'Get every lake from the database.',
+  })
   getAllLakes() {
     return this.lakeService.getAllLakes();
   }
@@ -36,6 +43,9 @@ export class LakeController {
    * @description - Returns the amount of lakes from the database.
    */
   @Get('/count')
+  @ApiOperation({
+    summary: 'Returns the amount of lakes from the database.',
+  })
   countAllLakes() {
     return this.lakeService.countLakes();
   }
@@ -48,8 +58,17 @@ export class LakeController {
   @ApiQuery({
     name: 'name',
     type: String,
+    required: false
   })
-  delete(@Query() query: { name: string }) {
-    return this.lakeService.delete(query.name);
+  @ApiQuery({
+    name: 'id',
+    type: String,
+    required: false
+  })
+  @ApiOperation({
+    summary: 'Remove a lake from the database.',
+  })
+  delete(@Query() query: { name?: string | undefined; id?: string | undefined }) {
+    return this.lakeService.delete(query.name, query.id);
   }
 }

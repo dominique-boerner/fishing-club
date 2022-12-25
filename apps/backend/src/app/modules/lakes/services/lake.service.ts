@@ -42,10 +42,15 @@ export class LakeService {
   /**
    * @description - remove a lake from the database.
    * @param name
+   * @param id
    */
-  async delete(name: string) {
+  async delete(name: string | undefined, id: string | undefined) {
+    if (!name && !id) {
+      Logger.error("Delete lake: no name or id given", LakeService.name);
+      return this.getAllLakes();
+    }
     Logger.log(`Delete lake with name ${name}`, LakeService.name);
-    await this.lakeModel.find({ name }).deleteMany();
+    await this.lakeModel.find({ name, _id: id }).deleteMany();
     return this.getAllLakes();
   }
 }
