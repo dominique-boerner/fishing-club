@@ -2,6 +2,13 @@ version: '3.1'
 
 services:
 
+  frontend:
+    build:
+      context: ../
+      dockerfile: ./docker/images/Dockerfile.frontend
+    ports:
+      - "8080:80"
+
   mongo:
     image: mongo
     restart: always

@@ -1,0 +1,3 @@
+FROM nginx:1.23
+
+COPY dist/apps/frontend /usr/share/nginx/html
