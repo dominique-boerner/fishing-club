@@ -33,7 +33,7 @@ export class LakeController {
   }
 
   /**
-   * @description - returns the amount of lakes from the database.
+   * @description - Returns the amount of lakes from the database.
    */
   @Get('/count')
   countAllLakes() {
@@ -41,7 +41,7 @@ export class LakeController {
   }
 
   /**
-   * @description - remove a lake from the database.
+   * @description - Remove a lake from the database.
    * @param query - query parameters, should include the parameter "name"
    */
   @Delete('')
