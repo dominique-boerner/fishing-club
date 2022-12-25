@@ -6,6 +6,7 @@
     "start": "nx serve",
     "start:frontend": "nx serve frontend",
     "start:backend": "nx serve backend",
+    "docker:start": "cd docker && docker compose up",
     "build": "nx build",
     "test": "nx test",
     "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js"
@@ -18,8 +19,9 @@
     "@nrwl/cypress": "15.4.1",
     "@nrwl/eslint-plugin-nx": "15.4.1",
     "@nrwl/jest": "15.4.1",
+    "@nrwl/js": "^15.3.3",
     "@nrwl/linter": "15.4.1",
-    "@nrwl/nest": "15.4.1",
+    "@nrwl/nest": "^15.4.1",
     "@nrwl/node": "15.4.1",
     "@nrwl/nx-cloud": "15.0.2",
     "@nrwl/workspace": "15.4.1",
@@ -66,4 +68,3 @@
     "vue-router": "^4.1.0"
   }
 }
-
