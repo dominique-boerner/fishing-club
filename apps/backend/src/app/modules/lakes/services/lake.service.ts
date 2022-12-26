@@ -55,6 +55,11 @@ export class LakeService {
     return new ResponseOk();
   }
 
+  /**
+   * @description - Update a lake by its id.
+   * @param identifier - identifier of the lake to update
+   * @param lake - the new lake
+   */
   async update(identifier: string, lake: Lake) {
     this.lakeModel.findByIdAndUpdate(identifier, lake, (err) => {
       if (err) {
