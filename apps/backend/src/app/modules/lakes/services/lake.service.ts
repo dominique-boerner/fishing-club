@@ -1,7 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
 import { Lake, LakeDocument } from '../schemas/lake.schema';
 import { Model } from 'mongoose';
+import { ResponseOk } from "../../../reponses/response-ok";
 
 /**
  * LakeService
@@ -20,7 +21,7 @@ export class LakeService {
     Logger.log(`Create a new lake`, LakeService.name);
     const model = new this.lakeModel({ ...lake });
     await model.save();
-    return this.getAllLakes();
+    return new ResponseOk();
   }
 
   /**
@@ -47,10 +48,10 @@ export class LakeService {
   async delete(name: string | undefined, id: string | undefined) {
     if (!name && !id) {
       Logger.error("Delete lake: no name or id given", LakeService.name);
-      return this.getAllLakes();
+      throw new HttpException("No name or id given", HttpStatus.BAD_REQUEST)
     }
     Logger.log(`Delete lake with name ${name}`, LakeService.name);
     await this.lakeModel.find({ name, _id: id }).deleteMany();
-    return this.getAllLakes();
+    return new ResponseOk();
   }
 }

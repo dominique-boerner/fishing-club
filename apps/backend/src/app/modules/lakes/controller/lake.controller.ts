@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { LakeService } from '../services/lake.service';
 import { Lake, LakeDocument } from '../schemas/lake.schema';
 import { ApiBody, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { Error } from "mongoose";
 
 /**
  * LakeController
