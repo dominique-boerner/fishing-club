@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
 import { LakeService } from "../services/lake.service";
 import { Lake, LakeDocument } from "../schemas/lake.schema";
-import { ApiBody, ApiOperation, ApiQuery, ApiTags } from "@nestjs/swagger";
+import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from "@nestjs/swagger";
+import { ApiImplicitParam } from "@nestjs/swagger/dist/decorators/api-implicit-param.decorator";
 
 /**
  * LakeController
@@ -52,23 +53,44 @@ export class LakeController {
 
   /**
    * @description - Remove a lake from the database.
-   * @param query - query parameters, should include the parameter "name"
+   * @param query - query parameters, should include the parameter "name" or "id"
    */
   @Delete('')
   @ApiQuery({
     name: 'name',
     type: String,
-    required: false
+    required: false,
   })
   @ApiQuery({
     name: 'id',
     type: String,
-    required: false
+    required: false,
   })
   @ApiOperation({
     summary: 'Remove a lake from the database.',
   })
-  delete(@Query() query: { name?: string | undefined; id?: string | undefined }) {
+  delete(
+    @Query() query: { name?: string | undefined; id?: string | undefined }
+  ) {
     return this.lakeService.delete(query.name, query.id);
+  }
+
+  /**
+   * @description - Update a lake by its id.
+   * @param lake - the new lake
+   * @param query - query parameters, should include the parameter "id"
+   */
+  @Put('')
+  @ApiBody({ type: Lake })
+  @ApiQuery({
+    name: 'id',
+    type: String,
+    required: true,
+  })
+  @ApiOperation({
+    summary: 'Update a lake by its id.',
+  })
+  update(@Body() lake: Lake, @Query() query: { id: string }) {
+    return this.lakeService.update(query.id, lake);
   }
 }

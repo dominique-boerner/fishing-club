@@ -1,8 +1,8 @@
-import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lake, LakeDocument } from '../schemas/lake.schema';
 import { Model } from 'mongoose';
-import { ResponseOk } from "../../../reponses/response-ok";
+import { ResponseOk } from '../../../reponses/response-ok';
 
 /**
  * LakeService
@@ -47,11 +47,21 @@ export class LakeService {
    */
   async delete(name: string | undefined, id: string | undefined) {
     if (!name && !id) {
-      Logger.error("Delete lake: no name or id given", LakeService.name);
-      throw new HttpException("No name or id given", HttpStatus.BAD_REQUEST)
+      Logger.error('Delete lake: no name or id given', LakeService.name);
+      throw new HttpException('No name or id given', HttpStatus.BAD_REQUEST);
     }
     Logger.log(`Delete lake with name ${name}`, LakeService.name);
     await this.lakeModel.find({ name, _id: id }).deleteMany();
+    return new ResponseOk();
+  }
+
+  async update(identifier: string, lake: Lake) {
+    this.lakeModel.findByIdAndUpdate(identifier, lake, (err) => {
+      if (err) {
+        Logger.error(err);
+        throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      }
+    });
     return new ResponseOk();
   }
 }
