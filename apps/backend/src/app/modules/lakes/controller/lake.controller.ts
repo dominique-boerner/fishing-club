@@ -3,20 +3,12 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   Post,
   Put,
   Query,
 } from '@nestjs/common';
 import { LakeService } from '../services/lake.service';
-import {
-  ApiBody,
-  ApiOperation,
-  ApiParam,
-  ApiQuery,
-  ApiTags,
-} from '@nestjs/swagger';
-import { ApiImplicitParam } from '@nestjs/swagger/dist/decorators/api-implicit-param.decorator';
+import { ApiBody, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Lake, LakeDocument } from '../dto/lake.dto';
 
 /**
@@ -68,14 +60,9 @@ export class LakeController {
 
   /**
    * @description - Remove a lake from the database.
-   * @param query - query parameters, should include the parameter "name" or "id"
+   * @param query - query parameters, should include the parameter "id"
    */
   @Delete('')
-  @ApiQuery({
-    name: 'name',
-    type: String,
-    required: false,
-  })
   @ApiQuery({
     name: 'id',
     type: String,
@@ -87,7 +74,7 @@ export class LakeController {
   delete(
     @Query() query: { name?: string | undefined; id?: string | undefined }
   ) {
-    return this.lakeService.delete(query.name, query.id);
+    return this.lakeService.delete(query.id);
   }
 
   /**
