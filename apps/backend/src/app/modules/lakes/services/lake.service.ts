@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Lake, LakeDocument } from '../schemas/lake.schema';
 import { Model } from 'mongoose';
 import { ResponseOk } from '../../../reponses/response-ok';
+import { Lake, LakeDocument } from '../dto/lake.dto';
 
 /**
  * LakeService

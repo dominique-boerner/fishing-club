@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { LakeController } from './controller/lake.controller';
-import { MongooseModule } from "@nestjs/mongoose";
-import { Lake, LakeSchema } from "./schemas/lake.schema";
-import { LakeService } from "./services/lake.service";
+import { MongooseModule } from '@nestjs/mongoose';
+import { LakeService } from './services/lake.service';
+import { Lake, LakeDto } from './dto/lake.dto';
 
 /**
  * Imports
  */
 const imports = [
-  MongooseModule.forFeature([{ name: Lake.name, schema: LakeSchema }]),
+  MongooseModule.forFeature([{ name: Lake.name, schema: LakeDto }]),
 ];
 
 /**
