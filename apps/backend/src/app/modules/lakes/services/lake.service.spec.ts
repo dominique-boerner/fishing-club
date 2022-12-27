@@ -7,9 +7,9 @@ import { HydratedDocument } from 'mongoose';
 import { ResponseOk } from '../../../reponses/response-ok';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-// we need to define a mocked LakeModel which implements the mongoose methods
+// we need to define a mocked MockLakeModel which implements the mongoose methods
 // we are using.
-class LakeModel {
+class MockLakeModel {
   constructor(private data) {}
 
   // save is unused, but the implementation of mongoose needs it.
@@ -30,7 +30,7 @@ describe('LakeService', () => {
         LakeService,
         {
           provide: getModelToken(Lake.name),
-          useValue: LakeModel,
+          useValue: MockLakeModel,
         },
       ],
     }).compile();
