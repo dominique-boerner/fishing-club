@@ -1,8 +1,23 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from "@nestjs/common";
-import { LakeService } from "../services/lake.service";
-import { Lake, LakeDocument } from "../schemas/lake.schema";
-import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from "@nestjs/swagger";
-import { ApiImplicitParam } from "@nestjs/swagger/dist/decorators/api-implicit-param.decorator";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
+import { LakeService } from '../services/lake.service';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
+import { ApiImplicitParam } from '@nestjs/swagger/dist/decorators/api-implicit-param.decorator';
+import { Lake, LakeDocument } from '../dto/lake.dto';
 
 /**
  * LakeController
