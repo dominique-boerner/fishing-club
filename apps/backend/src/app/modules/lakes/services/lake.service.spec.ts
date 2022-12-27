@@ -5,6 +5,7 @@ import { Lake } from '../dto/lake.dto';
 import { lakeMock, lakeUpdateMock } from '../../../mocks/lake.mock';
 import { HydratedDocument } from 'mongoose';
 import { ResponseOk } from '../../../reponses/response-ok';
+import { HttpException, HttpStatus } from '@nestjs/common';
 
 // we need to define a mocked LakeModel which implements the mongoose methods
 // we are using.
@@ -57,6 +58,16 @@ describe('LakeService', () => {
       '007f37a4-a2db-4b52-9ef6-cfbe457ba9e4'
     );
     expect(response).toStrictEqual(new ResponseOk());
+  });
+
+  it('should delete a lake by its id -- no id given', async () => {
+    try {
+      await service.delete(undefined);
+    } catch (e) {
+      expect(e).toStrictEqual(
+        new HttpException('No id given', HttpStatus.BAD_REQUEST)
+      );
+    }
   });
 
   it('should update a lake', async () => {

@@ -44,7 +44,7 @@ export class LakeService {
    * @description - remove a lake from the database.
    * @param id
    */
-  async delete(id: string) {
+  async delete(id: string | undefined) {
     if (!id) {
       Logger.error('Delete lake: no id given', LakeService.name);
       throw new HttpException('No id given', HttpStatus.BAD_REQUEST);
