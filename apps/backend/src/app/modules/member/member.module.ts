@@ -1,6 +1,15 @@
-import { Module } from '@nestjs/common';
-import { MemberController } from './controller/member.controller';
-import { MemberService } from './services/member.service';
+import { Module } from "@nestjs/common";
+import { MemberController } from "./controller/member.controller";
+import { MemberService } from "./services/member.service";
+import { MongooseModule } from "@nestjs/mongoose";
+import { Member, MemberDto } from "./dto/member.dto";
+
+/**
+ * Imports
+ */
+const imports = [
+  MongooseModule.forFeature([{ name: Member.name, schema: MemberDto }]),
+];
 
 /**
  * Controller definitions
@@ -19,6 +28,7 @@ const providers = [MemberService];
  * are related to members.
  */
 @Module({
+  imports,
   providers,
   controllers,
 })

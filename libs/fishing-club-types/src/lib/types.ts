@@ -44,7 +44,7 @@ export type Residence = {
   city: string;
   zip: string;
   street: string;
-  Country: Country;
+  country: Country;
 };
 
 /**
