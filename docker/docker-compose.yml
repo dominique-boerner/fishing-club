@@ -9,6 +9,13 @@ services:
     ports:
       - "8080:80"
 
+  backend:
+    build:
+      context: ../
+      dockerfile: ./docker/images/Dockerfile.backend
+    ports:
+      - "8081:3333"
+
   mongo:
     image: mongo
     restart: always

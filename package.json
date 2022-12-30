@@ -7,8 +7,10 @@
     "start:frontend": "nx serve frontend",
     "start:backend": "nx serve backend",
     "docker:start": "cd docker && docker compose build && docker compose up",
+    "deploy": "npm run build:frontend && npm run build:backend && npm run docker:start",
     "build": "nx build",
     "build:frontend": "nx build frontend",
+    "build:backend": "nx build backend --prod",
     "test": "nx test",
     "postinstall": "node node_modules/@nx-plus/vue/patch-nx-dep-graph.js"
   },
