@@ -10,16 +10,21 @@ interface LakeCardGrid {
 }
 
 defineProps<LakeCardGrid>();
-defineEmits(['onNewPondClick']);
+defineEmits(['onNewPondClick', 'onLakeRemoveClick']);
 </script>
 <template>
-  <div class="grid grid-rows-4 grid-cols-1 md:grid-rows-1 md:grid-cols-4 gap-1 w-full">
-    <LakeCard v-for="lake in lakes" :lake="lake" />
+  <div
+    class="grid grid-rows-4 grid-cols-1 md:grid-rows-1 md:grid-cols-4 gap-1 w-full"
+  >
+    <LakeCard
+      v-for="lake in lakes"
+      :lake="lake"
+      @onRemoveClick="$emit('onLakeRemoveClick', lake._id)"
+    />
     <Card
       title="Teich hinzufügen"
-      class="border-dashed border-2 border-gray-800 text-gray-800"
+      class="border-dashed border-2 border-gray-800 text-gray-800 md:min-w-[200px]"
       :imgIcon="pondImage"
-      @onCardClick="$emit('onNewPondClick')"
     ></Card>
   </div>
 </template>

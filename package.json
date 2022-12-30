@@ -66,6 +66,7 @@
     "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.4",
+    "axios": "^1.2.2",
     "mongoose": "^6.8.1",
     "oh-vue-icons": "^1.0.0-rc3",
     "reflect-metadata": "^0.1.13",

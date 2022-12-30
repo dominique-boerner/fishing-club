@@ -9,7 +9,7 @@ interface Card {
 }
 
 defineProps<Card>();
-defineEmits(['onCardClick']);
+defineEmits(['onCardClick', 'onRemoveClick']);
 </script>
 <template>
   <div
@@ -17,19 +17,25 @@ defineEmits(['onCardClick']);
     :tabindex="isClickable ? 1 : 0"
     @click="$emit('onCardClick')"
   >
-    <img v-if="img" class="w-full h-full absolute top-0 object-cover" :src="img" />
+    <img
+      v-if="img"
+      class="w-full h-full absolute top-0 object-cover"
+      :src="img"
+      :alt="title"
+    />
     <div class="flex flex-col absolute p-2 items-end w-full justify-end z-50">
       <v-icon
         v-if="isRemovable"
         scale="1.6"
         name="fa-trash-alt"
         class="text-danger cursor-pointer rounded-md p-2 hover:bg-gray-800/20"
+        @click="$emit('onRemoveClick')"
       ></v-icon>
     </div>
     <div
       class="flex flex-col justify-end items-center h-full w-full z-10 absolute"
     >
-      <img v-if="imgIcon" :src="imgIcon" class="w-28" />
+      <img v-if="imgIcon" :src="imgIcon" class="w-28" alt="" />
       <span v-if="title" class="font-bold p-4">{{ title }}</span>
     </div>
     <div

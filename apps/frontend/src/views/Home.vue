@@ -1,15 +1,24 @@
 <script setup lang="ts">
 import LakeCardGrid from '../components/LakeCardGrid.vue';
-import { mockLakes } from '../mocks/mock-lakes';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import TextInput from '../components/TextInput.vue';
 import Button from '../components/atoms/Button.vue';
-import Card from "../components/Card.vue";
+import { LakeService } from '../util/LakeService';
+import { Lake } from '../../../backend/src/app/modules/lakes/dto/lake.dto';
 
-const isNewPondOpen = ref(false);
+const isNewPondOpen = ref<boolean>(false);
+const lakes = ref<Lake[]>([]);
+
+onMounted(() => {
+  LakeService.getLakes().then((response) => (lakes.value = response.data));
+});
 
 function togglePondOpen() {
   isNewPondOpen.value = !isNewPondOpen.value;
+}
+
+function removeLake(id: string) {
+  LakeService.removeLake(id);
 }
 </script>
 <template>
@@ -17,7 +26,11 @@ function togglePondOpen() {
     <h1 class="pb-2">Hallo👋</h1>
     <h2 class="pb-2">Unsere Teiche</h2>
     <div class="relative">
-      <LakeCardGrid :lakes="mockLakes" @onNewPondClick="togglePondOpen()" />
+      <LakeCardGrid
+        :lakes="lakes"
+        @onNewPondClick="togglePondOpen()"
+        @onLakeRemoveClick="removeLake($event)"
+      />
       <div
         v-if="isNewPondOpen"
         class="flex flex-col bg-white shadow-md absolute z-50 rounded-md top-0 right-0 translate-x-[103%] p-2"

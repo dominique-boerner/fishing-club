@@ -8,6 +8,7 @@ interface LakeCard {
 }
 
 defineProps<LakeCard>();
+defineEmits(['onLakeRemove']);
 </script>
 <template>
   <Card
@@ -17,5 +18,6 @@ defineProps<LakeCard>();
     :has-gradient="true"
     :is-clickable="false"
     :is-removable="true"
+    @onRemoveClick="$emit('onLakeRemove')"
   ></Card>
 </template>
