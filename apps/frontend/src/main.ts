@@ -6,12 +6,14 @@ import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import './assets/main.scss';
 import {
   BiPeopleFill,
-  FaHome, FaTrashAlt,
+  CoSad,
+  FaHome,
+  FaTrashAlt,
   IoFishSharp,
-  OiSignOut
-} from "oh-vue-icons/icons";
+  OiSignOut,
+} from 'oh-vue-icons/icons';
 
-addIcons(FaHome, IoFishSharp, BiPeopleFill, OiSignOut, FaTrashAlt);
+addIcons(FaHome, IoFishSharp, BiPeopleFill, OiSignOut, FaTrashAlt, CoSad);
 
 const app = createApp(App);
 

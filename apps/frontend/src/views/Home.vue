@@ -5,20 +5,27 @@ import TextInput from '../components/TextInput.vue';
 import Button from '../components/atoms/Button.vue';
 import { LakeService } from '../util/LakeService';
 import { Lake } from '../../../backend/src/app/modules/lakes/dto/lake.dto';
+import Modal from '../components/molecules/Modal.vue';
 
 const isNewPondOpen = ref<boolean>(false);
 const lakes = ref<Lake[]>([]);
+const hasFetchError = ref<boolean>(false);
 
 onMounted(() => {
-  LakeService.getLakes().then((response) => (lakes.value = response.data));
+  LakeService.getLakes()
+    .then((response) => {
+      lakes.value = response.data;
+      hasFetchError.value = false;
+    })
+    .catch((e) => (hasFetchError.value = true));
 });
-
-function togglePondOpen() {
-  isNewPondOpen.value = !isNewPondOpen.value;
-}
 
 function removeLake(id: string) {
   LakeService.removeLake(id);
+}
+
+function reloadPage() {
+  window.location.reload();
 }
 </script>
 <template>
@@ -27,9 +34,18 @@ function removeLake(id: string) {
     <h2 class="pb-2">Unsere Teiche</h2>
     <div class="relative">
       <LakeCardGrid
+        v-if="!hasFetchError"
         :lakes="lakes"
-        @onNewPondClick="togglePondOpen()"
         @onLakeRemoveClick="removeLake($event)"
+      />
+      <Modal
+        v-if="hasFetchError"
+        title="Fehler beim laden"
+        icon="co-sad"
+        text="Bitte aktualisieren Sie die Webseite erneut."
+        action-caption="Seite aktualisieren"
+        :open="true"
+        @onActionClick="reloadPage()"
       />
       <div
         v-if="isNewPondOpen"
@@ -43,11 +59,5 @@ function removeLake(id: string) {
         <Button text="Hinzufügen" />
       </div>
     </div>
-    <!--    <NewsTile />-->
-    <!--    <Button text="Neues Mitglied" icon="fa-home" />-->
-    <!--    <p>Wie viele Mitglieder?</p>-->
-    <!--    <p>Wie viele Teiche?</p>-->
-    <!--    <p>Neuigkeiten?</p>-->
-    <!--    <p>nächste Termine?</p>-->
   </div>
 </template>

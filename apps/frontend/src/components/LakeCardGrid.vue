@@ -10,7 +10,7 @@ interface LakeCardGrid {
 }
 
 defineProps<LakeCardGrid>();
-defineEmits(['onNewPondClick', 'onLakeRemoveClick']);
+defineEmits(['onLakeRemoveClick']);
 </script>
 <template>
   <div
