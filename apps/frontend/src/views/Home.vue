@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import LakeCardGrid from '../components/LakeCardGrid.vue';
-import { onMounted, ref } from 'vue';
-import TextInput from '../components/TextInput.vue';
-import Button from '../components/atoms/Button.vue';
+import { onMounted } from 'vue';
 import { LakeService } from '../util/LakeService';
-import { Lake } from '../../../backend/src/app/modules/lakes/dto/lake.dto';
 import Modal from '../components/molecules/Modal.vue';
+import { useErrorStore } from '../stores/error.store';
+import { useLakeStore } from '../stores/lake.store';
 
-const isNewPondOpen = ref<boolean>(false);
-const lakes = ref<Lake[]>([]);
-const hasFetchError = ref<boolean>(false);
+const errorStore = useErrorStore();
+const lakeStore = useLakeStore();
 
 onMounted(() => {
   LakeService.getLakes()
     .then((response) => {
-      lakes.value = response.data;
-      hasFetchError.value = false;
+      lakeStore.setLakes(response.data);
+      errorStore.setHasError(false);
     })
-    .catch((e) => (hasFetchError.value = true));
+    .catch(() => {
+      errorStore.setHasError(true);
+    });
 });
 
 function removeLake(id: string) {
@@ -34,12 +34,12 @@ function reloadPage() {
     <h2 class="pb-2">Unsere Teiche</h2>
     <div class="relative">
       <LakeCardGrid
-        v-if="!hasFetchError"
-        :lakes="lakes"
+        v-if="!errorStore.hasError"
+        :lakes="lakeStore.lakes"
         @onLakeRemoveClick="removeLake($event)"
       />
       <Modal
-        v-if="hasFetchError"
+        v-if="errorStore.hasError"
         title="Fehler beim laden"
         icon="co-sad"
         text="Bitte aktualisieren Sie die Webseite erneut."
@@ -47,17 +47,6 @@ function reloadPage() {
         :open="true"
         @onActionClick="reloadPage()"
       />
-      <div
-        v-if="isNewPondOpen"
-        class="flex flex-col bg-white shadow-md absolute z-50 rounded-md top-0 right-0 translate-x-[103%] p-2"
-      >
-        <span class="font-bold">Neuer Teich</span>
-        <div class="flex flex-col mb-2">
-          <label>Name</label>
-          <TextInput />
-        </div>
-        <Button text="Hinzufügen" />
-      </div>
     </div>
   </div>
 </template>
