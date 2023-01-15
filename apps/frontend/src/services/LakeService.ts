@@ -1,5 +1,6 @@
 import { Lake } from '@fishing-club/fishing-club-types';
 import { pocketBaseServiceInstance } from './PocketbaseService';
+import { environment } from '../environments/environment';
 
 /**
  * LakeService

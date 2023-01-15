@@ -10,10 +10,4 @@
  *
  * https://cli.vuejs.org/config/#configurewebpack
  */
-module.exports = () => {
-  return {
-    css: {
-      sourceMap: false,
-    },
-  };
-};
+module.exports = () => {};
