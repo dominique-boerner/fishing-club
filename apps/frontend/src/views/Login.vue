@@ -4,16 +4,20 @@ import Button from '../components/atoms/Button.vue';
 import { pocketBaseServiceInstance } from '../services/PocketbaseService';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from "../stores/user.store";
 
 const router = useRouter();
+const userStore = useUserStore();
 
 const username = ref('');
 const password = ref('');
 
-function login() {
-  pocketBaseServiceInstance.authenticate(username.value, password.value);
+async function login() {
+  await pocketBaseServiceInstance.authenticate(username.value, password.value);
   if (pocketBaseServiceInstance.pocketBase.authStore.isValid) {
-    router.push('/');
+    const user = pocketBaseServiceInstance.pocketBase.authStore.model;
+    userStore.setUser(user);
+    await router.push('/');
   }
 }
 </script>

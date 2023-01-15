@@ -9,17 +9,10 @@ class PocketBaseService {
   pocketBase = new PocketBase(environment.api.url);
 
   /**
-   * Get the current user which is logged in
-   */
-  getCurrentUser() {
-    return pocketBaseServiceInstance.pocketBase.authStore.model;
-  }
-
-  /**
    * Authenticate the user with username and password
    */
-  authenticate(username: string, password: string) {
-    this.pocketBase.collection('users').authWithPassword(username, password);
+  async authenticate(username: string, password: string) {
+    return this.pocketBase.collection('users').authWithPassword(username, password);
   }
 }
 
