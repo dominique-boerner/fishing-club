@@ -57,6 +57,18 @@ export type Contact = {
 };
 
 /**
+ * @type User
+ */
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  emailVisibility: boolean;
+  verified: boolean;
+  avatar: string;
+};
+
+/**
  * @type Member
  */
 export type Member = {

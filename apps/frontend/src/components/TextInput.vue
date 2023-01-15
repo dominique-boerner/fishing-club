@@ -10,6 +10,7 @@ interface TextInput {
 }
 
 defineProps<TextInput>();
+defineEmits(['onInput']);
 </script>
 <template>
   <div
@@ -23,6 +24,7 @@ defineProps<TextInput>();
       :placeholder="placeholder"
       @focusin="isFocus = true"
       @focusout="isFocus = false"
+      @input="$emit('onInput', $event)"
     />
   </div>
 </template>

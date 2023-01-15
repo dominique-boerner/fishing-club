@@ -7,6 +7,14 @@ interface NavigationBar {
 }
 
 defineProps<NavigationBar>();
+
+/**
+ * Returns, if the given route is visible in navigation bar.
+ * @param {Route} route - the route
+ */
+function isRouteVisible(route: Route) {
+  return route.visible;
+}
 </script>
 
 <template>
@@ -17,7 +25,10 @@ defineProps<NavigationBar>();
       <img src="./../assets/logo.png" class="w-12 pr-2 cursor-pointer" />
     </router-link>
     <div class="w-full flex flex-col justify-end items-center text-gray-400">
-      <template v-for="route of routes" :key="route.path">
+      <template
+        v-for="route of routes.filter(isRouteVisible)"
+        :key="route.path"
+      >
         <router-link
           class="w-full text-center h-full py-4 cursor-pointer transition ease-in-out hover:text-gray-900 active:bg-gray-200 md:w-16"
           active-class="text-gray-900 bg-secondary"

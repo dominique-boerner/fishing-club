@@ -1,0 +1,38 @@
+<script setup lang="ts">
+import TextInput from '../components/TextInput.vue';
+import Button from '../components/atoms/Button.vue';
+import { pocketBaseServiceInstance } from '../services/PocketbaseService';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const username = ref('');
+const password = ref('');
+
+function login() {
+  pocketBaseServiceInstance.authenticate(username.value, password.value);
+  if (pocketBaseServiceInstance.pocketBase.authStore.isValid) {
+    router.push('/');
+  }
+}
+</script>
+
+<template>
+  <div class="flex justify-center items-center w-screen h-screen">
+    <div class="text-center flex flex-col p-4 bg-white w-1/3">
+      <h1 class="mb-4">Login</h1>
+      <text-input
+        class="mb-2"
+        placeholder="Nutzername"
+        @onInput="username = $event.target.value"
+      ></text-input>
+      <text-input
+        class="mb-2"
+        placeholder="Passwort"
+        @onInput="password = $event.target.value"
+      ></text-input>
+      <Button text="Anmelden" @click="login()"></Button>
+    </div>
+  </div>
+</template>

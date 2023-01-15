@@ -8,14 +8,18 @@ import { environment } from '../environments/environment';
 class PocketBaseService {
   pocketBase = new PocketBase(environment.api.url);
 
-  constructor() {
-    this.authenticate();
+  /**
+   * Get the current user which is logged in
+   */
+  getCurrentUser() {
+    return pocketBaseServiceInstance.pocketBase.authStore.model;
   }
 
-  private authenticate() {
-    this.pocketBase
-      .collection('users')
-      .authWithPassword(environment.api.username, environment.api.password);
+  /**
+   * Authenticate the user with username and password
+   */
+  authenticate(username: string, password: string) {
+    this.pocketBase.collection('users').authWithPassword(username, password);
   }
 }
 
