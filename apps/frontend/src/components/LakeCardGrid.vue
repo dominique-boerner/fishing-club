@@ -19,7 +19,7 @@ defineEmits(['onLakeRemoveClick']);
     <LakeCard
       v-for="lake in lakes"
       :lake="lake"
-      @onRemoveClick="$emit('onLakeRemoveClick', lake._id)"
+      @onRemoveClick="$emit('onLakeRemoveClick', lake.id)"
     />
     <Card
       title="Teich hinzufügen"

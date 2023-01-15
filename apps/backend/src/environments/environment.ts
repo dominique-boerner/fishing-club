@@ -1,7 +1,0 @@
-export const environment = {
-  production: false,
-  database: {
-    ip: "0.0.0.0",
-    port: 3306
-  }
-};

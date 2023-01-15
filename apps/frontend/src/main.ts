@@ -9,12 +9,21 @@ import {
   CoSad,
   FaHome,
   FaTrashAlt,
+  FcSearch,
   IoFishSharp,
   OiSignOut,
 } from 'oh-vue-icons/icons';
 import { createPinia } from 'pinia';
 
-addIcons(FaHome, IoFishSharp, BiPeopleFill, OiSignOut, FaTrashAlt, CoSad);
+addIcons(
+  FaHome,
+  IoFishSharp,
+  BiPeopleFill,
+  OiSignOut,
+  FaTrashAlt,
+  CoSad,
+  FcSearch
+);
 
 const app = createApp(App);
 const pinia = createPinia();
