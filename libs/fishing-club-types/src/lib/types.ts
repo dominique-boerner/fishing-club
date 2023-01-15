@@ -72,10 +72,7 @@ export type Member = {
  * @type Lake
  */
 export type Lake = {
-  /*
-   * _id is the actual mongo document id.
-   */
-  _id?: string;
+  id?: string;
   img: string;
   name: string;
   fishSpecies: Fish[];

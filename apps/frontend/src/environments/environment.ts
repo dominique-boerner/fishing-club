@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
   api: {
-    url: "http://localhost",
-    port: "3333"
-  }
+    url: 'http://localhost:8090',
+    username: 'default',
+    password: 'defaultuser',
+  },
 };
