@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import TextInput from '../components/TextInput.vue';
-import Button from '../components/atoms/Button.vue';
-import { pocketBaseServiceInstance } from '../services/PocketbaseService';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useUserStore } from "../stores/user.store";
+import TextInput from "../components/TextInput.vue";
+import { pocketBaseServiceInstance } from "@/services/PocketbaseService";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user.store";
+import PrimaryButton from "@/components/atoms/buttons/PrimaryButton.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
 
-const username = ref('');
-const password = ref('');
+const username = ref("");
+const password = ref("");
 
 async function login() {
   await pocketBaseServiceInstance.authenticate(username.value, password.value);
   if (pocketBaseServiceInstance.pocketBase.authStore.isValid) {
     const user = pocketBaseServiceInstance.pocketBase.authStore.model;
     userStore.setUser(user);
-    await router.push('/');
+    await router.push("/");
   }
 }
 </script>
@@ -36,7 +36,7 @@ async function login() {
         placeholder="Passwort"
         @onInput="password = $event.target.value"
       ></text-input>
-      <Button text="Anmelden" @click="login()"></Button>
+      <PrimaryButton text="Anmelden" @click="login()"></PrimaryButton>
     </div>
   </div>
 </template>
