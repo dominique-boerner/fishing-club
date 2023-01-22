@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import LakeCard from "./LakeCard.vue";
-import Card from "./Card.vue";
 import pondImage from "./../assets/pond.png";
 import type { Lake } from "@/models";
+import PondifyCard from "@/components/PondifyCard.vue";
 
 interface ILakeCardGrid {
   lakes: Lake[];
@@ -21,10 +21,10 @@ defineEmits(["onLakeRemoveClick"]);
       :lake="lake"
       @onRemoveClick="$emit('onLakeRemoveClick', lake.id)"
     />
-    <Card
+    <PondifyCard
       title="Teich hinzufügen"
       class="border-dashed border-2 border-gray-800 text-gray-800 md:min-w-[200px]"
       :imgIcon="pondImage"
-    ></Card>
+    ></PondifyCard>
   </div>
 </template>

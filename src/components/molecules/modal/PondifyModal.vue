@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from "../atoms/Button.vue";
+import PondifyButton from "@/components/atoms/buttons/PondifyButton.vue";
 
 interface Modal {
   title?: string;
@@ -28,12 +28,12 @@ defineEmits(["onActionClick"]);
           {{ text }}
         </article>
       </div>
-      <Button
+      <PondifyButton
         v-if="actionCaption"
         class="w-full"
         :text="actionCaption"
         @click="$emit('onActionClick')"
-      ></Button>
+      ></PondifyButton>
     </dialog>
   </div>
 </template>
