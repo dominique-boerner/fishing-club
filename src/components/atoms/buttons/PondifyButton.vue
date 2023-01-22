@@ -28,7 +28,7 @@ defineProps<IButton>();
 
 @layer components {
   .btn {
-    @apply px-4 py-3 rounded-md uppercase tracking-wide transition ease-in-out font-bold hover:opacity-70;
+    @apply px-4 py-3 rounded-md uppercase tracking-wide transition ease-in-out hover:opacity-70;
 
     // primary button
     &.btn--primary {

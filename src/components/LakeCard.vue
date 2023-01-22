@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Lake } from "@/models";
-import PondifyCard from "@/components/PondifyCard.vue";
+import PondifyCard from "@/components/molecules/card/PondifyCard.vue";
 
 interface ILakeCard {
   lake: Lake;
