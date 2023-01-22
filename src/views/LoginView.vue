@@ -4,7 +4,6 @@ import { pocketBaseServiceInstance } from "@/services/PocketbaseService";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.store";
-import PrimaryButton from "@/components/atoms/buttons/PrimaryButton.vue";
 import PondifyButton from "@/components/atoms/buttons/PondifyButton.vue";
 
 const router = useRouter();

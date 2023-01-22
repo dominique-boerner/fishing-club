@@ -1,5 +1,5 @@
-import PocketBase from 'pocketbase';
-import { environment } from '../environments/environment';
+import PocketBase from "pocketbase";
+import { environment } from "@/environments/environment";
 
 /**
  * PocketBaseService
@@ -12,7 +12,9 @@ class PocketBaseService {
    * Authenticate the user with username and password
    */
   async authenticate(username: string, password: string) {
-    return this.pocketBase.collection('users').authWithPassword(username, password);
+    return this.pocketBase
+      .collection("users")
+      .authWithPassword(username, password);
   }
 }
 

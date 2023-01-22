@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from '../atoms/Button.vue';
+import Button from "../atoms/Button.vue";
 
 interface Modal {
   title?: string;
@@ -10,7 +10,7 @@ interface Modal {
 }
 
 defineProps<Modal>();
-defineEmits(['onActionClick']);
+defineEmits(["onActionClick"]);
 </script>
 <template>
   <div

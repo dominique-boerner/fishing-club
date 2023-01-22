@@ -9,7 +9,7 @@ interface Card {
 }
 
 defineProps<Card>();
-defineEmits(['onCardClick', 'onRemoveClick']);
+defineEmits(["onCardClick", "onRemoveClick"]);
 </script>
 <template>
   <div

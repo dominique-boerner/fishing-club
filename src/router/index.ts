@@ -1,34 +1,34 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
 import type { Route } from "@/models";
+import HomeView from "@/views/HomeView.vue";
+import LoginView from "@/views/LoginView.vue";
 
 export const routes: Route[] = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomeView,
     icon: "fa-home",
     visible: true,
   },
   {
     path: "/route1",
     name: "Route1",
-    component: Home,
+    component: HomeView,
     icon: "io-fish-sharp",
     visible: true,
   },
   {
     path: "/route2",
     name: "Route2",
-    component: Home,
+    component: HomeView,
     icon: "bi-people-fill",
     visible: true,
   },
   {
     path: "/login",
     name: "login",
-    component: Login,
+    component: LoginView,
     icon: "bi-people-fill",
     visible: false,
   },

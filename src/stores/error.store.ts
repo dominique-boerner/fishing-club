@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
 /**
  * ErrorStore
  * @description - Stores errors.
  */
-export const useErrorStore = defineStore('error', {
+export const useErrorStore = defineStore("error", {
   state: () => ({
     hasError: false,
   }),

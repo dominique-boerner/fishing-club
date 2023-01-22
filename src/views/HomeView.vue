@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import LakeCardGrid from "../components/LakeCardGrid.vue";
 import { onMounted } from "vue";
-import { useLakeStore } from "../stores/lake.store";
-import { useErrorStore } from "../stores/error.store";
+import { useLakeStore } from "@/stores/lake.store";
+import { useErrorStore } from "@/stores/error.store";
 import TextInput from "../components/TextInput.vue";
-import { lakeServiceInstance } from "../services/LakeService";
-import { useUserStore } from "../stores/user.store";
+import { lakeServiceInstance } from "@/services/LakeService";
+import { useUserStore } from "@/stores/user.store";
 
 const userStore = useUserStore();
 const lakeStore = useLakeStore();
