@@ -5,6 +5,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/user.store";
 import PrimaryButton from "@/components/atoms/buttons/PrimaryButton.vue";
+import PondifyButton from "@/components/atoms/buttons/PondifyButton.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -36,7 +37,11 @@ async function login() {
         placeholder="Passwort"
         @onInput="password = $event.target.value"
       ></text-input>
-      <PrimaryButton text="Anmelden" @click="login()"></PrimaryButton>
+      <PondifyButton
+        mode="primary"
+        text="Anmelden"
+        @click="login()"
+      ></PondifyButton>
     </div>
   </div>
 </template>
